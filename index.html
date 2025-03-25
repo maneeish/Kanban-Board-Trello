@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban Board</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>Kanban Board</h1>
+  </header>
+
+  <main>
+    <div class="board-container">
+      <div id="board" class="board"></div>
+      <div class="add-column-button">
+        <button id="add-column-btn"><i class="fas fa-plus"></i> Add Column</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="add-task-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Add Task</h2>
+      <form id="add-task-form">
+        <input type="hidden" id="column-id">
+        <div class="form-group">
+          <label for="task-title">Title</label>
+          <input type="text" id="task-title" required>
+        </div>
+        <div class="form-group">
+          <label for="task-description">Description</label>
+          <textarea id="task-description"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="cancel-button">Cancel</button>
+          <button type="submit" class="submit-button">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="edit-task-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Edit Task</h2>
+      <form id="edit-task-form">
+        <input type="hidden" id="edit-column-id">
+        <input type="hidden" id="edit-task-id">
+        <div class="form-group">
+          <label for="edit-task-title">Title</label>
+          <input type="text" id="edit-task-title" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-task-description">Description</label>
+          <textarea id="edit-task-description"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="cancel-button">Cancel</button>
+          <button type="submit" class="submit-button">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="add-column-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Add Column</h2>
+      <form id="add-column-form">
+        <div class="form-group">
+          <label for="column-title">Title</label>
+          <input type="text" id="column-title" required>
+        </div>
+        <div class="form-group">
+          <label for="column-color">Color</label>
+          <div class="color-picker">
+            <div class="color-option" data-color="#e2e8f0" style="background-color: #e2e8f0;"></div>
+            <div class="color-option" data-color="#fde68a" style="background-color: #fde68a;"></div>
+            <div class="color-option" data-color="#bae6fd" style="background-color: #bae6fd;"></div>
+            <div class="color-option" data-color="#bbf7d0" style="background-color: #bbf7d0;"></div>
+            <div class="color-option" data-color="#fecaca" style="background-color: #fecaca;"></div>
+            <div class="color-option" data-color="#ddd6fe" style="background-color: #ddd6fe;"></div>
+            <div class="color-option" data-color="#fbcfe8" style="background-color: #fbcfe8;"></div>
+            <div class="color-option" data-color="#fed7aa" style="background-color: #fed7aa;"></div>
+          </div>
+          <input type="hidden" id="column-color-input" value="#e2e8f0">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="cancel-button">Cancel</button>
+          <button type="submit" class="submit-button">Add Column</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="delete-confirmation-modal" class="modal">
+    <div class="modal-content">
+      <h2>Delete Task</h2>
+      <p id="delete-confirmation-message">Are you sure you want to delete this task?</p>
+      <div class="form-actions">
+        <button type="button" class="cancel-button">Cancel</button>
+        <button type="button" id="confirm-delete-button" class="delete-button">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="column-color-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Change Column Color</h2>
+      <div class="color-picker">
+        <div class="color-option" data-color="#e2e8f0" style="background-color: #e2e8f0;"></div>
+        <div class="color-option" data-color="#fde68a" style="background-color: #fde68a;"></div>
+        <div class="color-option" data-color="#bae6fd" style="background-color: #bae6fd;"></div>
+        <div class="color-option" data-color="#bbf7d0" style="background-color: #bbf7d0;"></div>
+        <div class="color-option" data-color="#fecaca" style="background-color: #fecaca;"></div>
+        <div class="color-option" data-color="#ddd6fe" style="background-color: #ddd6fe;"></div>
+        <div class="color-option" data-color="#fbcfe8" style="background-color: #fbcfe8;"></div>
+        <div class="color-option" data-color="#fed7aa" style="background-color: #fed7aa;"></div>
+      </div>
+      <input type="hidden" id="edit-column-color-input" value="">
+      <input type="hidden" id="edit-column-id-input" value="">
+      <div class="form-actions">
+        <button type="button" class="cancel-button">Cancel</button>
+        <button type="button" id="save-column-color-button" class="submit-button">Save Color</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
